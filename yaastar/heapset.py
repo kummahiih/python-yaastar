@@ -100,16 +100,16 @@ class HeapSet(list):
 if __name__ == "__main__":
 
 
-    print 'creation test'
+    print('creation test')
     l = HeapSet([1,5,3,7,8,2,4,6])
-    print l, dir(l)
-    print l
-    print 'length', len(l)
+    print(l, dir(l))
+    print(l)
+    print('length', len(l))
 
-    print 'heapsort test'
+    print('heapsort test')
     l = HeapSet([1,5,3,7,8,2,4,6])
     pyheapq.heapify(l)
-    print l
+    print(l)
 
     reslist = []
 
@@ -117,43 +117,43 @@ if __name__ == "__main__":
         resitem = pyheapq.heappop(l)
         reslist.append(resitem)
 
-    print 'this sould be sorted:', reslist
+    print('this sould be sorted:', reslist)
 
     
-    print 'double insert test'
+    print('double insert test')
     l = HeapSet([])
     try:
         l.append(1)
         l.append(2)
         l.append(1)
-    except ValueError, e:
-        print "this should be VelueError:", e
+    except ValueError as e:
+        print("this should be VelueError:", e)
 
 
-    print 'simple modification of the heap:'
+    print('simple modification of the heap:')
 
     reslist = []
     l = HeapSet([1,5,3,7,8,2,4,6])
     pyheapq.heapify(l)
 
-    print '2 --> 0 and 5 --> 9'
+    print('2 --> 0 and 5 --> 9')
     index2 = l.index(2)
     index5 = l.index(5)
 
-    print "index of value 2", index2
-    print "index of value 5", index5
+    print("index of value 2", index2)
+    print("index of value 5", index5)
     
-    print l
+    print(l)
     pyheapq.updateheapvalue(l,index2,0)
     pyheapq.updateheapvalue(l,index5,9)
-    print l
+    print(l)
 
     while l:
         resitem = pyheapq.heappop(l)
         reslist.append(resitem)
     
-    print 'this sould be sorted:', reslist
-    print l
+    print('this sould be sorted:', reslist)
+    print(l)
 
     
     

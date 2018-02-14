@@ -1,5 +1,5 @@
 """{-
-Copyright (c) 2009 Pauli Henrikki Rikula 
+Copyright (c) 2009 - 2018 Pauli Henrikki Rikula 
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -32,7 +32,7 @@ from copy import copy
 
 def reconstruct_path(came_from, current_node):
     """
-    came_from : dictuonary of nodes and nodes before them in the shortest found path
+    came_from : dictionary of nodes and nodes before them in the shortest found path
     current_node : the last node of the path
     """
     if current_node in came_from:
