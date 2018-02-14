@@ -53,24 +53,6 @@ class SimpleMap(yaastar.Map):
 
 
 
-def createPathPicture(path,allpaths,updateset, name):
-        from PIL import Image
-        from PIL import ImageDraw
-        im = Image.new('RGB',((a_map.xmax+1) * 20, (a_map.ymax+1) * 20) )
-        draw = ImageDraw.Draw(im)
-
-        totuple = lambda p: tuple([ip*20 +10 for ip in p])
-
-        for t in allpaths:
-            draw.line(totuple([i for p in [t,allpaths[t]] for i in p]), fill=(0,0,100))
-
-        draw.line(totuple([i for p in path for i in p]), fill=(0,100,0))
-
-        for t, f in updateset:
-            draw.line(totuple([i for p in [t,f] for i in p]), fill=(100,0,0))
-
-        im.save(name+".gif", "GIF")
-
 
 if __name__ == "__main__":
     iteration = 0
@@ -97,8 +79,6 @@ if __name__ == "__main__":
         for x in path:
             a_map.mark(x,'x')
         print("-"* 60)
-
-        createPathPicture(path,allpaths,updateset, "paths-%d"%iteration )
         
         a_map.mark(start, 'S')
         a_map.mark(goal, 'G')

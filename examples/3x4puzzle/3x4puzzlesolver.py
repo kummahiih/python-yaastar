@@ -45,8 +45,12 @@ class PuzzleMap(yaastar.Map):
         posdict = dict([
                 (start[j][i],(i,j)) for i in range(3) for j in range(4) 
                 ])
-        
-        dist = lambda (i1,j1),(i2,j2): ((i1-i2)**2 + (j1-j2)**2)**0.5
+                
+        def dist(a, b):
+            i1, j1 = a
+            i2, j2 = b
+            return ((i1-i2)**2 + (j1-j2)**2)**0.5
+            
         distance = sum([
                 dist(posdict[goal[j][i]], (i,j)) for i in range(3) for j in range(4)
                 ])

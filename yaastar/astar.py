@@ -23,11 +23,12 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 -}"""
 
-
-import pyheapq
-
-from heapset import HeapSet
 from copy import copy
+
+from .pyheapq import heappop, heappush, updateheapvalue
+
+from .heapset import HeapSet
+
 
 
 def reconstruct_path(came_from, current_node):
@@ -44,7 +45,6 @@ def reconstruct_path(came_from, current_node):
 
 class HeapItem:
     def __init__(self,y,goal, a_map, g_score):
-            
         self.node = y
 
         """ g_score = Distance from start along optimal path."""
@@ -129,7 +129,7 @@ def a_star(start, goal, a_map):
         the node in openset having 
         the lowest (f_score,g_score,h_score, position) value (f_score means the most ...)
         """
-        x  = pyheapq.heappop(scoreHeap)
+        x  = heappop(scoreHeap)
 
         if x.node == goal:
             if lastItem == None or lastItem.g_score > x.g_score:
@@ -164,7 +164,7 @@ def a_star(start, goal, a_map):
                 openDict[node_y] = y
                 came_from[node_y] = x.node
                 
-                pyheapq.heappush(scoreHeap, y)
+                heappush(scoreHeap, y)
                 
             elif tentative_g_score < oldy.g_score:
                 updateset.add( (node_y, came_from[node_y]) )
@@ -172,7 +172,7 @@ def a_star(start, goal, a_map):
                 openDict[node_y] = y
                 came_from[node_y] = x.node
                 
-                pyheapq.updateheapvalue(scoreHeap, scoreHeap.index(oldy), y)
+                updateheapvalue(scoreHeap, scoreHeap.index(oldy), y)
     
     if lastItem != None:
         return [start] + reconstruct_path(came_from,goal), came_from, updateset
