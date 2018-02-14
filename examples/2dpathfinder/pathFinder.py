@@ -9,12 +9,12 @@ class SimpleMap(yaastar.Map):
         self.emptyChars = " .SG"
     
     def aprint(self):
-        print " |"+"".join([str(i%10) for i in range(self.xmax)])+"| "
-        print "--"+"-"*self.xmax
+        print(" |"+"".join([str(i%10) for i in range(self.xmax)])+"| ")
+        print("--"+"-"*self.xmax)
         for i,j in enumerate(self.fstrings):
-            print "%d|%s|%d"%(i%10, j, i%10)
-        print "--"+"-"*self.xmax
-        print " |"+"".join([str(i%10) for i in range(self.xmax)])+"| "
+            print("%d|%s|%d"%(i%10, j, i%10))
+        print("--"+"-"*self.xmax)
+        print(" |"+"".join([str(i%10) for i in range(self.xmax)])+"| ")
     
     def heuristic_estimate_of_distance(self, start, goal):
         return self.dist_between(start, goal)
@@ -42,7 +42,8 @@ class SimpleMap(yaastar.Map):
         return ( sum([(start[i] - goal[i]) ** 2 for i in range(l)]) ) ** 0.5 
 
         
-    def mark(self,(i,j), mark):
+    def mark(self, xxx_todo_changeme, mark):
+        (i,j) = xxx_todo_changeme
         try:
             line = [c for c in self.fstrings[j]]
             line[i] = mark
@@ -74,28 +75,28 @@ def createPathPicture(path,allpaths,updateset, name):
 if __name__ == "__main__":
     iteration = 0
     while True:
-        filename = raw_input("mapfile: ")
-        print
+        filename = input("mapfile: ")
+        print()
         
         a_map = SimpleMap(filename)
         a_map.aprint()
         
-        si = int(raw_input("start x: "))
-        sj = int(raw_input("start y: "))
+        si = int(input("start x: "))
+        sj = int(input("start y: "))
 
-        gi = int(raw_input("goal x: "))
-        gj = int(raw_input("goal y: "))
-        print
+        gi = int(input("goal x: "))
+        gj = int(input("goal y: "))
+        print()
 
         start = (si,sj)
         goal = (gi,gj)
         
-        print "-"* 60
+        print("-"* 60)
         path, allpaths, updateset = yaastar.a_star(start,goal,a_map)
 
         for x in path:
             a_map.mark(x,'x')
-        print "-"* 60
+        print("-"* 60)
 
         createPathPicture(path,allpaths,updateset, "paths-%d"%iteration )
         

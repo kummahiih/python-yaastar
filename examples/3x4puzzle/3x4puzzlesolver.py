@@ -36,10 +36,10 @@ class PuzzleMap(yaastar.Map):
     def aprint(self,kk=None):
         if kk== None:
             kk = self.numbers
-        print "  |"+ "|".join(["%02d"%i for i in range(3)])+"| "
-        print "--|"+"--|"*3
+        print("  |"+ "|".join(["%02d"%i for i in range(3)])+"| ")
+        print("--|"+"--|"*3)
         for i,j in enumerate(kk):
-            print "%02d|%s|"%(i, "|".join(["%02d"%k for k in j]))
+            print("%02d|%s|"%(i, "|".join(["%02d"%k for k in j])))
     
     def heuristic_estimate_of_distance(self, start, goal):
         posdict = dict([
@@ -67,7 +67,8 @@ class PuzzleMap(yaastar.Map):
                         return i1,j1
         i1,j1 = gethole()
 
-        def swapncopy((i2,j2),res):
+        def swapncopy(xxx_todo_changeme,res):
+            (i2,j2) = xxx_todo_changeme
             if i2 < 0 or j2 < 0:
                 #print "raised"
                 raise IndexError("noworries")
@@ -97,10 +98,10 @@ class PuzzleMap(yaastar.Map):
 
 if __name__ == "__main__":
     while True:
-        print ""
-        filename = raw_input("puzzlefile:")
-        holenmbr = raw_input("holenumber")
-        print ""
+        print("")
+        filename = input("puzzlefile:")
+        holenmbr = input("holenumber")
+        print("")
         k = PuzzleMap(filename, holenmbr)
         k.aprint()
         situations = yaastar.a_star(k.numbers,k.goal,k)[0]
@@ -109,8 +110,8 @@ if __name__ == "__main__":
         for i,situation in enumerate(situations):
             if len(situation) == 0:
                 break
-            print "-"*60
-            print i
+            print("-"*60)
+            print(i)
             #TODO ...
             k.numbers = situation
             k.aprint()
