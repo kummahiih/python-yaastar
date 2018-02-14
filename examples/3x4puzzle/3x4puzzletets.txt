@@ -1,0 +1,8 @@
+3x4puzzle1.txt
+0
+3x4puzzle2.txt
+0
+3x4puzzle3.txt
+0
+3x4puzzle4.txt
+0
